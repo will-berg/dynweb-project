@@ -1,0 +1,339 @@
+$primary-color: rgb(20, 19, 19);
+$secondary-color: gold;
+$text-color: white;
+
+@mixin gridContainer() {
+    display: grid;
+    column-gap: 3%;
+    row-gap: 3%;
+    height: 100vh;
+    max-width: 100%;
+    padding: 2% 15%;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@mixin gridItem {
+    background: $primary-color;
+    color: $text-color;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $secondary-color;
+    padding: 1%;
+}
+
+/* Styling for teams list page */
+.flexParent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.teamTable {
+    background-image: url("https://wallpaperaccess.com/full/7488635.jpg"); /* Currently only displays correctly on 1920x1080 screens */
+    background-size: cover; /* Remove stretching */
+}
+
+html,
+body,
+.sign {
+    background: rgb(27, 27, 27);
+}
+
+.sign {
+    color: $text-color;
+    .sign-field {
+        background-color: white;
+    }
+}
+
+.teams {
+    border-width: 1px;
+    border-style: solid;
+    border-color: $secondary-color;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: $primary-color;
+    .teamRow {
+        display: flex;
+        align-items: center;
+        padding-top: 0.4rem;
+        img {
+            cursor: pointer;
+            padding-right: 0.3rem;
+        }
+        span {
+            cursor: pointer;
+            text-align: left;
+            color: $text-color;
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+
+    th {
+        color: $text-color;
+        padding-right: 1.5rem;
+        text-align: left;
+    }
+    tr {
+        color: $text-color;
+        text-align: left;
+    }
+    .glow {
+        color: $secondary-color;
+    }
+    .club {
+        display: flex;
+        align-items: center;
+        img {
+            padding-right: 0.3rem;
+        }
+        &:hover {
+            color: $secondary-color;
+            cursor: pointer;
+        }
+    }
+}
+
+.headers {
+    margin-bottom: 0.5rem;
+}
+
+/* Loading circle when waiting for async operations to finish */
+// TODO center the loader somehow...
+.loader {
+    border: 16px solid $primary-color;
+    border-top: 16px solid $secondary-color;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.nav-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-height: 5vh;
+    background-color: black;
+    color: $text-color;
+    .webtitle {
+        color: $secondary-color;
+        text-decoration: none;
+        margin-left: 1.5%;
+        margin-right: 1em;
+        font-size: large;
+        font-style: italic;
+        h2 {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .navlink {
+        color: $text-color;
+        text-decoration: none;
+        font-size: medium;
+        font-weight: 600;
+        margin: 0% 3%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        &:hover {
+            color: $secondary-color;
+        }
+        span {
+            margin-right: 0.2em;
+        }
+        .user {
+            display: flex;
+            align-items: center;
+            span {
+                padding-left: 0.2em;
+            }
+        }
+    }
+}
+
+.nav-container > :nth-child(6) {
+    margin-right: auto;
+}
+
+.container {
+    @include gridContainer();
+    grid-template-columns: repeat(2, 1fr);
+    .item {
+        @include gridItem();
+    }
+    .general {
+        display: grid;
+        row-gap: 3%;
+        .divitem {
+            @include gridItem();
+        }
+        .coach {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                clip-path: circle();
+            }
+        }
+        img {
+            display: inline-block;
+            margin: 10px 10px;
+        }
+        ul {
+            list-style-type: none;
+        }
+    }
+}
+
+.venueImg {
+    width: 16em;
+}
+
+.viewText {
+    color: $text-color;
+}
+
+.players {
+    @include gridContainer();
+    .player-box {
+        @include gridItem();
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: large;
+        padding: 5% 3%;
+        span {
+            padding: 0% 3%; /* top, right, bottom, left (top & bottom, left & right) */
+        }
+        ul {
+            list-style-type: none;
+        }
+        &:hover {
+            span {
+                color: $secondary-color;
+            }
+        }
+        .player {
+            clip-path: circle();
+        }
+    }
+}
+
+.scores {
+    @include gridContainer();
+    .score-box {
+        @include gridItem();
+        height: 7.5em;
+        font-size: large;
+        padding: 5% 3%;
+        span {
+            padding: 2% 2%; /* top, right, bottom, left (top & bottom, left & right) */
+        }
+        .date {
+            font-weight: bold;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .home-score {
+            padding-top: 4%;
+            display: flex;
+            align-items: center;
+        }
+        .away-score {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.pie-chart {
+    grid-area: pie;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bar-chart {
+    grid-area: bar;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form {
+    grid-area: form;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    span {
+        display: flex;
+        align-items: center;
+        .icon {
+            margin-right: 0.2em;
+        }
+    }
+}
+
+.grid-stats {
+    p {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "pie ."
+        "bar bar"
+        "form form";
+}
+
+.fixtureTitle {
+    font-weight: bolder;
+    color: $secondary-color;
+}
+
+.statPopup-content {
+    color: $text-color;
+    background-color: $primary-color;
+}
+
+.statPopup-overlay,
+.modal {
+    background-color: $primary-color;
+}
+
+.statPopup-arrow {
+    background-color: $primary-color;
+}
+
+.statButton {
+    margin-left: 2em;
+    &:hover {
+        cursor: pointer;
+        background-color: $secondary-color;
+    }
+}
+
+.notPlayed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
